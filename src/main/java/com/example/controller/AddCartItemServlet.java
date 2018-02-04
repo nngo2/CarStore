@@ -4,7 +4,6 @@ import com.example.Constants;
 import com.example.dao.ProductDao;
 import com.example.dao.ProductDaoImpl;
 import com.example.model.Product;
-import com.example.dao.ProductDb;
 import com.example.model.ShoppingCart;
 
 import javax.servlet.ServletException;
