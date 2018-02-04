@@ -1,8 +1,19 @@
 package com.example.model;
 
-public class Product {
-    private String id;
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "PRODUCT")
+public class Product implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private String name;
+    private String model;
+    private String make;
+    private int year;
     private String description;
     private String image;
     private double unitPrice;
@@ -11,13 +22,17 @@ public class Product {
         super();
     }
 
-    public Product(String id, String name, String description, String image, double unitPrice) {
+    public Product(int id, String name, String description, String image,
+                   double unitPrice, String model, String make, int year) {
         super();
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.unitPrice = unitPrice;
+        this.model = model;
+        this.make = make;
+        this.year = year;
     }
 
     public String getName() {
@@ -52,11 +67,35 @@ public class Product {
         this.unitPrice = unitPrice;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getMake() {
+        return make;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }

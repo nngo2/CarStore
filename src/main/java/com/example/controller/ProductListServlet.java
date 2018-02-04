@@ -1,7 +1,7 @@
 package com.example.controller;
 
-import com.example.Constants;
-import com.example.dao.ProductDb;
+import com.example.dao.ProductDao;
+import com.example.dao.ProductDaoImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
@@ -14,32 +14,17 @@ import java.io.IOException;
 @WebServlet(name = "ProductListServlet", urlPatterns = {"/product", ""})
 public class ProductListServlet extends HttpServlet {
 
+    private ProductDao db;
     private ObjectMapper mapper = new ObjectMapper();
 
     @Override
     public void init() throws ServletException {
-        synchronized (this) {
-            ProductDb db = (ProductDb)this.getServletContext().getAttribute(Constants.PRODUCT_DB);
-            if (db == null) {
-                db = new ProductDb();
-                this.getServletContext().setAttribute(Constants.PRODUCT_DB, db);
-            }
-        }
-
-
-    }
-
-    @Override
-    public void destroy() {
-        this.getServletContext().removeAttribute(Constants.PRODUCT_DB);
+        db = new ProductDaoImpl();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDb db = (ProductDb)this.getServletContext().getAttribute(Constants.PRODUCT_DB);
-
         req.setAttribute("products", db.getAllProducts());
-
         req.getRequestDispatcher("/WEB-INF/jsp/product.jsp").forward(req,resp);
     }
 }

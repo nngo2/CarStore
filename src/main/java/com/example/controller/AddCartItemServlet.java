@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import com.example.Constants;
+import com.example.dao.ProductDao;
+import com.example.dao.ProductDaoImpl;
 import com.example.model.Product;
 import com.example.dao.ProductDb;
 import com.example.model.ShoppingCart;
@@ -15,13 +17,20 @@ import java.io.IOException;
 
 @WebServlet(name = "AddCartItemServlet", urlPatterns = "/additem")
 public class AddCartItemServlet extends HttpServlet {
+    private ProductDao db;
+
+    @Override
+    public void init() throws ServletException {
+        db = new ProductDaoImpl();
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String productId = req.getParameter("productid");
+        int prodId = Integer.parseInt(productId);
 
         if (productId != null) {
-            ProductDb db = (ProductDb)this.getServletContext().getAttribute(Constants.PRODUCT_DB);
-            Product p = db.getProduct(productId);
+            Product p = db.getProduct(prodId);
 
             HttpSession session =  req.getSession();
 

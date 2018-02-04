@@ -1,7 +1,7 @@
 package com.example.model;
 
 public class CartItem {
-    private String productId;
+    private int productId;
     private String productName;
     private double price;
     private int numOfItems;
@@ -15,11 +15,11 @@ public class CartItem {
         totalPrice = price * numOfItems;
     }
 
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
