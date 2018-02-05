@@ -34,7 +34,7 @@ var ProuctDetail = (function() {
                 <p><strong>Year: </strong> ${product.year}</p>
                 <p><strong>Description: </strong> ${product.description}</p>
                 <p><strong>Price: </strong><span class="price">$${product.unitPrice.toLocaleString()}</span></p>
-                <p>
+                <p class="center-50">
                     <input id="ok_${product.id}" class="button" type="button" value=" OK " data-productid = "${product.id}">
                 </p>
             </div>
