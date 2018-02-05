@@ -24,7 +24,10 @@ public class Constants {
 
     public static final int PAGE_SIZE = 3;
 
+    public static final String ROLE_ADMIN = "admin";
+
     public static final String CMD_GET_PRODUCT = "get-product";
     public static final String CMD_ADD_PRODUCT_CART = "add-product-cart";
+    public static final String CMD_GET_PRODUCT_DETAIL = "get-product-detail";
 
 }

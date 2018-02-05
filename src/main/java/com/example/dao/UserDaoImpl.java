@@ -25,6 +25,12 @@ public class UserDaoImpl implements UserDao {
         query.setParameter("password", u.getPassword());
         List<User> userList = query.list();
         transaction.commit();
+        if (userList.size() > 0) {
+            u.setId(userList.get(0).getId());
+            u.setFirstName(userList.get(0).getFirstName());
+            u.setLastName(userList.get(0).getLastName());
+            u.setUserRole(userList.get(0).getUserRole());
+        }
         return userList.size() > 0;
     }
 }

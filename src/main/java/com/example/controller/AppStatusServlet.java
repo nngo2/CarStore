@@ -38,6 +38,9 @@ public class AppStatusServlet extends HttpServlet {
             status.setLoggedIn(false);
         } else {
             status.setLoggedIn(true);
+            if (u.getUserRole() != null && u.getUserRole().equals(Constants.ROLE_ADMIN)) {
+                status.setAdminUser(true);
+            }
         }
 
         out.write(mapper.writeValueAsString(status));

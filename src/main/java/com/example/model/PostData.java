@@ -4,6 +4,7 @@ public class PostData {
     private String command;
     private Paging paging;
     private int productIdAddToCart;
+    private int productId;
 
     public String getCommand() {
         return command;
@@ -27,5 +28,13 @@ public class PostData {
 
     public void setProductIdAddToCart(int productIdAddToCart) {
         this.productIdAddToCart = productIdAddToCart;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }

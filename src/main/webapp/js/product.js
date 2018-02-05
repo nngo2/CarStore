@@ -57,6 +57,15 @@ $(function(){
         toastr.info("Car has been added to cart");
     }
 
+    function viewDetail(itemId) {
+        ProuctDetail.buildProductView("popup", itemId, viewDetailCallback);
+        $("#popup").dialog({ minWidth: 700, minHeight: 600 });
+    }
+
+    function viewDetailCallback() {
+        $("#popup").dialog("close");
+    }
+
     function displayProduct(products) {
         $("#product-container").empty();
         for (let i = 0; i < products.length; i++) {
@@ -68,18 +77,25 @@ $(function(){
                     <p class="price">$${products[i].unitPrice.toLocaleString()}</p>
                     <p>
                         <input id="add_${products[i].id}" class="button" type="button" value=" Add To Cart " data-productid = "${products[i].id}">
+                        <input id="view_${products[i].id}" class="button" type="button" value=" View Details " data-productid = "${products[i].id}">
                     </p>
                 </div>
             <div class="clear"></div>
             `;
+
             $("#product-container").append(prodElement);
+
             $("#add_" + products[i].id).click(function() {
                 addToCart($(this).attr("data-productid"));
+            });
+
+            $("#view_" + products[i].id).click(function() {
+                viewDetail($(this).attr("data-productid"));
             });
         }
     }
 
-    window.onload  = function() {
+    window.onload = function() {
         CarStoreCommon.resetHeaderButtons();
         getProducts(0);
     }

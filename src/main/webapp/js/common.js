@@ -2,6 +2,7 @@ var CarStoreCommon = (function() {
     var targetUrl = "http://localhost:8080/carstore/";
     var isCartEmpty = true;
     var isLoggedin = false;
+    var isAdmin = false;
     var appStatus = {};
 
     function resetHeaderButtons() {
@@ -27,6 +28,7 @@ var CarStoreCommon = (function() {
             appStatus = JSON.parse(data);
             CarStoreCommon.isCartEmpty = appStatus.cartEmpty;
             CarStoreCommon.isLoggedin = appStatus.loggedIn;
+            CarStoreCommon.isAdmin = appStatus.adminUser;
         });
     }
 
