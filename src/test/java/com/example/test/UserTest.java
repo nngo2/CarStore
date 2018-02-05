@@ -11,6 +11,7 @@ public class UserTest  {
         System.out.println(pass);
         System.out.println(HashHelper.hash("test1"));
         System.out.println(HashHelper.hash("test2"));
+        System.out.println(HashHelper.hash("admin"));
         Assert.assertNotNull(pass);
     }
 }

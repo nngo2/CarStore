@@ -12,8 +12,21 @@ $(function(){
     }
 
     function resetHeaderButtons() {
-        CarStoreCommon.setCartButtonStatus(false);
-        CarStoreCommon.setLogoutButtonStatus(false);
+        CarStoreCommon.getAppStatus().done(function() {
+            if (CarStoreCommon.isCartEmpty) {
+                CarStoreCommon.setCartButtonStatus(false);
+            } else {
+                CarStoreCommon.setCartButtonStatus(true);
+            }
+
+            if (CarStoreCommon.isLoggedin) {
+                CarStoreCommon.setLogoutButtonStatus(true);
+                CarStoreCommon.setLoginButtonStatus(false);
+            } else {
+                CarStoreCommon.setLogoutButtonStatus(false);
+                CarStoreCommon.setLoginButtonStatus(true);
+            }
+        });
     }
 
     function getProducts(page) {
@@ -58,6 +71,7 @@ $(function(){
     function addToCart(itemId) {
         addProductToCart(itemId);
         CarStoreCommon.setCartButtonStatus(true);
+        CarStoreCommon.isCartEmpty = false;
 
     }
 

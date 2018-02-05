@@ -15,6 +15,7 @@ public class User implements Serializable {
     private String lastName;
     private String username;
     private String password;
+    private String userRole;
 
     public User() {
         super();
@@ -24,6 +25,11 @@ public class User implements Serializable {
         super();
         this.username = username;
         this.password = password;
+    }
+
+    public User(String username, String password, String userRole) {
+        this(username, password);
+        this.userRole = userRole;
     }
 
     public String getUsername() {
@@ -64,5 +70,13 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 }

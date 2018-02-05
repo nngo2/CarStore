@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="navbar">
     <span>Luxury Cars Center</span>
+    <a id="loginButton" href="<c:url value='/login'/>">Login</a>
     <a id="logoutButton" href="<c:url value='/logout'/>">Logout</a>
     <a id="cartButton" href="<c:url value='/cart'/>">Cart</a>
     <a id="catalogButton" href="<c:url value='/product'/>">Catalog</a>
