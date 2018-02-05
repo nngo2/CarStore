@@ -4,6 +4,24 @@ var CarStoreCommon = (function() {
     var isLoggedin = false;
     var appStatus = {};
 
+    function resetHeaderButtons() {
+        getAppStatus().done(function() {
+            if (CarStoreCommon.isCartEmpty) {
+                CarStoreCommon.setCartButtonStatus(false);
+            } else {
+                CarStoreCommon.setCartButtonStatus(true);
+            }
+
+            if (CarStoreCommon.isLoggedin) {
+                CarStoreCommon.setLogoutButtonStatus(true);
+                CarStoreCommon.setLoginButtonStatus(false);
+            } else {
+                CarStoreCommon.setLogoutButtonStatus(false);
+                CarStoreCommon.setLoginButtonStatus(true);
+            }
+        });
+    }
+
     function getAppStatus() {
         return $.get(targetUrl + "appstatus").done(function(data) {
             appStatus = JSON.parse(data);
@@ -28,7 +46,6 @@ var CarStoreCommon = (function() {
         }
     }
 
-
     function setLoginButtonStatus(visible) {
         if (!visible) {
             $("#loginButton").css("display", "none");
@@ -37,7 +54,6 @@ var CarStoreCommon = (function() {
         }
     }
 
-
     return {
         targetUrl: targetUrl,
         isCartEmpty: isCartEmpty,
@@ -45,7 +61,8 @@ var CarStoreCommon = (function() {
         setLogoutButtonStatus: setLogoutButtonStatus,
         setCartButtonStatus: setCartButtonStatus,
         setLoginButtonStatus: setLoginButtonStatus,
-        getAppStatus: getAppStatus
+        getAppStatus: getAppStatus,
+        resetHeaderButtons: resetHeaderButtons
 
     }
 

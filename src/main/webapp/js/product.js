@@ -11,24 +11,6 @@ $(function(){
         return  $.post(CarStoreCommon.targetUrl + "additem", {command: JSON.stringify(postData)});
     }
 
-    function resetHeaderButtons() {
-        CarStoreCommon.getAppStatus().done(function() {
-            if (CarStoreCommon.isCartEmpty) {
-                CarStoreCommon.setCartButtonStatus(false);
-            } else {
-                CarStoreCommon.setCartButtonStatus(true);
-            }
-
-            if (CarStoreCommon.isLoggedin) {
-                CarStoreCommon.setLogoutButtonStatus(true);
-                CarStoreCommon.setLoginButtonStatus(false);
-            } else {
-                CarStoreCommon.setLogoutButtonStatus(false);
-                CarStoreCommon.setLoginButtonStatus(true);
-            }
-        });
-    }
-
     function getProducts(page) {
         getProductData(page).done(function(data) {
             let pagedProduct = JSON.parse(data);
@@ -72,7 +54,7 @@ $(function(){
         addProductToCart(itemId);
         CarStoreCommon.setCartButtonStatus(true);
         CarStoreCommon.isCartEmpty = false;
-
+        toastr.info("Car has been added to cart");
     }
 
     function displayProduct(products) {
@@ -98,7 +80,7 @@ $(function(){
     }
 
     window.onload  = function() {
-        resetHeaderButtons();
+        CarStoreCommon.resetHeaderButtons();
         getProducts(0);
     }
 });

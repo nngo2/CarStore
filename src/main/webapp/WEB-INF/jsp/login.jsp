@@ -11,6 +11,9 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>" type="text/css"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<c:url value='/js/common.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/js/login.js'/>"></script>
 </head>
 <body>
     <section>
