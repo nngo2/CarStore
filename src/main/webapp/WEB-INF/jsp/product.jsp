@@ -13,6 +13,9 @@
 <head>
     <title>Shopping Center</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<c:url value='/js/common.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/js/product.js'/>"></script>
 </head>
 <body>
 <section>
@@ -20,21 +23,10 @@
 </section>
 <div class="main"></div>
     <div id="product-container">
-        <c:forEach var="p" items="${products}">
-            <form method="post" action="<c:url value='/additem'/>">
-                <div class="product">
-                    <img src="<c:url value='/image/${p.image}'/>" alt="product image"/>
-                    <p class="title">${p.name}</p>
-                    <p>${p.description}</p>
-                    <p class="price"><fmt:formatNumber value="${p.unitPrice}" type="currency" currencySymbol="$"/></p>
-                    <p>
-                        <input type="hidden" name="productid" value="${p.id}">
-                        <input class="button" type="submit" value=" Add To Cart ">
-                    </p>
-                </div>
-            </form>
-            <div class="clear"></div>
-        </c:forEach>
+    </div>
+    <div>
+        <input id="back" class="paging-button" type="button" value=" < ">
+        <input id="next" class="paging-button" type="button" value=" > ">
     </div>
 </body>
 </html>

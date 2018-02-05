@@ -2,7 +2,6 @@ package com.example.controller;
 
 import com.example.dao.ProductDao;
 import com.example.dao.ProductDaoImpl;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +14,6 @@ import java.io.IOException;
 public class ProductListServlet extends HttpServlet {
 
     private ProductDao db;
-    private ObjectMapper mapper = new ObjectMapper();
 
     @Override
     public void init() throws ServletException {
@@ -25,6 +23,7 @@ public class ProductListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("products", db.getAllProducts());
+        req.setAttribute("page", db.getPagingInfo());
         req.getRequestDispatcher("/WEB-INF/jsp/product.jsp").forward(req,resp);
     }
 }

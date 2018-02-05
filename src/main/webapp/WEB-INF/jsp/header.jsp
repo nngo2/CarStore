@@ -8,16 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="navbar">
-    <span>Luxury Cars Mate</span>
-    <c:if test="${!empty sessionScope.user}">
-        <a href="<c:url value='/logout'/>">Logout</a>
-    </c:if>
-    <c:if test="${!empty sessionScope.cart.items}">
-        <a href="<c:url value='/cart'/>">Cart</a>
-    </c:if>
-    <a href="<c:url value='/product'/>">Catalog</a>
-    <c:if test="${!empty sessionScope.welcome}">
-       <span> | ${sessionScope.welcome}</span>
-    </c:if>
-
+    <span>Luxury Cars Center</span>
+    <a id="logoutButton" href="<c:url value='/logout'/>">Logout</a>
+    <a id="cartButton" href="<c:url value='/cart'/>">Cart</a>
+    <a id="catalogButton" href="<c:url value='/product'/>">Catalog</a>
 </div>

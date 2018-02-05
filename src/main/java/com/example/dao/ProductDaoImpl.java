@@ -1,5 +1,8 @@
 package com.example.dao;
 
+import com.example.Constants;
+import com.example.model.PagedProduct;
+import com.example.model.Paging;
 import com.example.model.Product;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -36,5 +39,39 @@ public class ProductDaoImpl implements ProductDao {
         List<Product> products = query.list();
         transaction.commit();
         return products;
+    }
+
+    @Override
+    public Paging getPagingInfo() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        String countQ = "select count (p.id) from com.example.model.Product p";
+        Query countQuery = session.createQuery(countQ);
+        Long countResults = (Long) countQuery.uniqueResult();
+        int lastPageNumber = (int) (Math.ceil(countResults / Constants.PAGE_SIZE));
+        return new Paging(Constants.PAGE_SIZE, 1, lastPageNumber);
+    }
+
+    @Override
+    public PagedProduct getPagedProducts(Paging page) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+
+        String countQ = "select count (p.id) from com.example.model.Product p";
+        Query countQuery = session.createQuery(countQ);
+        Long countResults = (Long) countQuery.uniqueResult();
+        int lastPageNumber = (int) (Math.ceil(countResults / Constants.PAGE_SIZE));
+        page.setTotalPage(lastPageNumber);
+
+        Query selectQuery = session.createQuery("from com.example.model.Product");
+        selectQuery.setFirstResult(page.getCurrentPage() * page.getPageSize());
+        selectQuery.setMaxResults(page.getPageSize());
+        List<Product> products = selectQuery.list();
+        transaction.commit();
+
+        PagedProduct pProduct = new PagedProduct();
+        pProduct.setPaging(page);
+        pProduct.setProducts(products);
+        return pProduct;
     }
 }

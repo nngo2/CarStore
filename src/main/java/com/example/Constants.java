@@ -21,4 +21,10 @@ public class Constants {
     public static final String CSS_VISIBLE = "visible";
     public static final String CSS_INVISIBLE = "invisible";
     public static final String LOGIN_ERROR_MSG = "Invalid login! Use test1/test1 to test";
+
+    public static final int PAGE_SIZE = 3;
+
+    public static final String CMD_GET_PRODUCT = "get-product";
+    public static final String CMD_ADD_PRODUCT_CART = "add-product-cart";
+
 }

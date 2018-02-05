@@ -3,9 +3,9 @@ package com.example.controller;
 import com.example.Constants;
 import com.example.dao.ProductDao;
 import com.example.dao.ProductDaoImpl;
+import com.example.model.PagedProduct;
 import com.example.model.PostData;
 import com.example.model.Product;
-import com.example.model.ShoppingCart;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
@@ -13,11 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collection;
 
-@WebServlet(name = "AddCartItemServlet", urlPatterns = "/additem")
-public class AddCartItemServlet extends HttpServlet {
+@WebServlet("/productdata")
+public class ProductDataServlet extends HttpServlet {
+
     private ProductDao db;
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -28,23 +30,13 @@ public class AddCartItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        PrintWriter out = resp.getWriter();
         String jsonString = req.getParameter("command");
         PostData post = mapper.readValue(jsonString, PostData.class);
 
-        if (post.getCommand().equals(Constants.CMD_ADD_PRODUCT_CART)) {
-            Product p = db.getProduct(post.getProductIdAddToCart());
-
-            HttpSession session =  req.getSession();
-
-            ShoppingCart cart = (ShoppingCart)session.getAttribute(Constants.CARD_SESSION);
-            if (cart == null) {
-                session.setAttribute(Constants.CARD_SESSION, new ShoppingCart());
-                cart = (ShoppingCart)session.getAttribute(Constants.CARD_SESSION);
-            }
-
-            cart.addItem(p);
-
+        if (post.getCommand().equals(Constants.CMD_GET_PRODUCT)) {
+            PagedProduct product = db.getPagedProducts(post.getPaging());
+            out.write(mapper.writeValueAsString(product));
         }
     }
 }
