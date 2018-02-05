@@ -5,11 +5,10 @@ var CarStoreCommon = (function() {
     var appStatus = {};
 
     function getAppStatus() {
-        let self = this;
         return $.get(targetUrl + "appstatus").done(function(data) {
             appStatus = JSON.parse(data);
-            this.isCartEmpty = appStatus.cartEmpty;
-            this.isLoggedin = appStatus.loggedIn;
+            CarStoreCommon.isCartEmpty = appStatus.cartEmpty;
+            CarStoreCommon.isLoggedin = appStatus.loggedIn;
         });
     }
 
