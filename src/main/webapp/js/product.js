@@ -102,6 +102,7 @@ $(function(){
 
     function deleteProduct(id) {
         deleteProductData(id).done(function() {
+            toastr.info("Car has been deleted from the system");
             loadPagedProducts(currentPage.currentPage);
         });
     }

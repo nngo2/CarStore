@@ -10,7 +10,7 @@
 <div class="navbar">
     <span>Luxury Cars Center</span>
     <a id="loginButton" href="<c:url value='/login'/>">Login</a>
-    <a id="logoutButton" href="<c:url value='/logout'/>">Logout</a>
-    <a id="cartButton" href="<c:url value='/cart'/>">Cart</a>
+    <a id="logoutButton" style="display : none" href="<c:url value='/logout'/>">Logout</a>
+    <a id="cartButton" style="display : none" href="<c:url value='/cart'/>">Cart</a>
     <a id="catalogButton" href="<c:url value='/product'/>">Catalog</a>
 </div>
