@@ -68,6 +68,8 @@ $(function(){
         addProductToCart(itemId);
         CarStoreCommon.setCartButtonStatus(true);
         CarStoreCommon.isCartEmpty = false;
+        toastr.options.closeButton = true;
+        toastr.options.positionClass = "toast-bottom-right";
         toastr.info("Car has been added to cart");
     }
 
