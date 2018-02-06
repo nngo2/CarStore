@@ -5,6 +5,12 @@ var CarStoreCommon = (function() {
     var isAdmin = false;
     var appStatus = {};
 
+    function toasterInfo(msg) {
+        toastr.options.closeButton = true;
+        toastr.options.positionClass = "toast-bottom-right";
+        toastr.info(msg);
+    }
+
     function resetHeaderButtons() {
         let d = $.Deferred();
 
@@ -77,6 +83,7 @@ var CarStoreCommon = (function() {
         isAdmin: isAdmin,
         showSpinner: showSpinner,
         hideSpinner: hideSpinner,
+        toasterInfo: toasterInfo,
         setLogoutButtonStatus: setLogoutButtonStatus,
         setCartButtonStatus: setCartButtonStatus,
         setLoginButtonStatus: setLoginButtonStatus,

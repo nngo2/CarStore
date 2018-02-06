@@ -68,9 +68,7 @@ $(function(){
         addProductToCart(itemId);
         CarStoreCommon.setCartButtonStatus(true);
         CarStoreCommon.isCartEmpty = false;
-        toastr.options.closeButton = true;
-        toastr.options.positionClass = "toast-bottom-right";
-        toastr.info("Car has been added to cart");
+        CarStoreCommon.toasterInfo("Car has been added to cart");
     }
 
     function viewDetail(itemId) {
@@ -104,7 +102,7 @@ $(function(){
 
     function deleteProduct(id) {
         deleteProductData(id).done(function() {
-            toastr.info("Car has been deleted from the system");
+            CarStoreCommon.toasterInfo("Car has been deleted from the system");
             loadPagedProducts(currentPage.currentPage);
         });
     }
