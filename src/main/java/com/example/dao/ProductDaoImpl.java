@@ -32,6 +32,16 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public void deleteProduct(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Product p = new Product();
+        p.setId(id);
+        session.delete(p);
+        transaction.commit();
+    }
+
+    @Override
     public Collection<Product> getAllProducts() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();

@@ -124,7 +124,7 @@ var ProuctDetail = (function() {
             <div><label>Model: <input id="model" name="model" type="text" value="${product.model}" required/></label></div>
             <div><label>Year: <input id="year" name="year" type="number" value="${product.year}" pattern="\d{4}"/></label></div>
             <div><label>Description: <textarea id="description" name="description" rows="3">${product.description}</textarea></label></div>
-            <div><label>Price: <input id="unitPrice" name="unitPrice" type="number" value="${product.unitPrice}" required pattern="\d{1,}\.\d{2}"/></label></div>
+            <div><label>Price: <input id="unitPrice" name="unitPrice" type="number" value="${product.unitPrice}" required pattern="\d{1,}(\.)\d{2}"/></label></div>
             <div class="center">
                 <input id="save_${product.id}" class="button" type="button" value=" OK " data-productid = "${product.id}"/>
                 <input id="cancel_${product.id}" class="button" type="button" value=" Cancel " data-productid = "${product.id}"/>
@@ -154,13 +154,13 @@ var ProuctDetail = (function() {
         let prodElement = `  
         <form id="uploadform" method="post" action="${CarStoreCommon.targetUrl}upload" enctype="multipart/form-data">
             <div class="product">
-                <div><label>Image: <input id="image" name="image" type="file"/></label></div>
+                <div><label>Image: <input id="image" name="image" type="file" required/></label></div>
                 <div><label>Title: <input id="name" name="name" type="text" required/></label></div>
                 <div><label>Make: <input id="make" name="make" type="text" required/></label></div>
                 <div><label>Model: <input id="model" name="model" type="text" required/></label></div>
-                <div><label>Year: <input id="year" name="year" type="number" pattern="d{4}"/></label></div>
+                <div><label>Year: <input id="year" name="year" type="number" pattern="\d{4}"/></label></div>
                 <div><label>Description: <textarea id="description" name="description" rows="3"></textarea></label></div>
-                <div><label>Price: <input id="unitPrice" name="unitPrice" type="number" required pattern="d{1,}.d{2}"/></label></div>
+                <div><label>Price: <input id="unitPrice" name="unitPrice" type="number" required pattern="\d{1,}(\.)d{2}"/></label></div>
                 <div class="center">
                     <input id="add_product" class="button" type="submit" value=" OK " />
                     <input id="cancel_add" class="button" type="button" value=" Cancel " />
