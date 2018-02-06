@@ -14,7 +14,10 @@
     <title>Shopping Center</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>"/>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript" src="<c:url value='/js/common.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/js/product_detail.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/cart.js'/>"></script>
 </head>
 <body>
@@ -22,6 +25,7 @@
     <c:import url="header.jsp"></c:import>
 </section>
 <section class="main">
+    <div id="popup"></div>
     <div id="cart">
         <div class="center-50">
             <form method="get" action="<c:url value='/product'/>">
@@ -34,13 +38,16 @@
                 <th>Price</th>
             </tr>
             <c:forEach var="i" items="${cart.items}">
-                <tr class="item">
-                    <td>${i.productName}</td>
-                    <td class="price"><fmt:formatNumber value="${i.price}" type="currency" currencySymbol="$"/></td>
+                <tr class="item" id="item_${i.productId}">
+                    <td>${i.productName} <br>
+                        <button id="view_${i.productId}" class="button buttonDetails" data-productid = "${i.productId}"> View Details</button>
+                        <button id="view_${i.productId}" class="button removeButton" data-productid = "${i.productId}"> Delete</button>
+                    </td>
+                    <td class="price"><fmt:formatNumber value="${i.price}" type="currency" currencySymbol="$"/> </td>
                 </tr>
             </c:forEach>
             <tr>
-                <td colspan="2" class="price">Total price: <fmt:formatNumber value="${cart.totalPrice}" type="currency" currencySymbol="$"/></td>
+                <td colspan="2" id="price">Total price: <fmt:formatNumber value="${cart.totalPrice}" type="currency" currencySymbol="$"/></td>
             </tr>
         </table>
         <div class="center-50">
