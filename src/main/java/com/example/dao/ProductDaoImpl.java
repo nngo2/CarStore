@@ -64,7 +64,7 @@ public class ProductDaoImpl implements ProductDao {
         page.setTotalPage(lastPageNumber);
 
         Query selectQuery = session.createQuery("from com.example.model.Product");
-        selectQuery.setFirstResult(page.getCurrentPage() * page.getPageSize());
+        selectQuery.setFirstResult((page.getCurrentPage() - 1) * page.getPageSize());
         selectQuery.setMaxResults(page.getPageSize());
         List<Product> products = selectQuery.list();
         transaction.commit();

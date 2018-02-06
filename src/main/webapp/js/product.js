@@ -23,29 +23,32 @@ $(function(){
 
     function configurePaging(page) {
         currentPage = page;
-        if (page.currentPage >= page.totalPage) {
+        if ((page.currentPage - 1) >= page.totalPage) {
             $("#next")
                 .attr('disabled',true);
 
         } else {
             $("#next")
                 .attr('disabled',false)
-                .click(function() {
+                .off('click')
+                .on('click',function() {
                     currentPage.currentPage++;
-                    if (currentPage.currentPage > page.totalPage) {
-                        currentPage.currentPage = page.totalPage;
+                    if (currentPage.currentPage > (page.totalPage + 1)) {
+                        currentPage.currentPage = page.totalPage + 1;
                     }
                     loadPagedProducts(currentPage.currentPage);
                 });
         }
-        if (page.currentPage <= 0) {
+        if ((page.currentPage - 1) <= 0) {
             $("#back").attr('disabled',true);
         } else {
-            $("#back").attr('disabled',false)
-                .click(function() {
+            $("#back")
+                .attr('disabled',false)
+                .off('click')
+                .on('click', function() {
                     currentPage.currentPage--;
-                    if (currentPage.currentPage < 0) {
-                        currentPage.currentPage = 0;
+                    if (currentPage.currentPage <= 1) {
+                        currentPage.currentPage = 1;
                     }
                     loadPagedProducts(currentPage.currentPage);
                 });
@@ -83,9 +86,9 @@ $(function(){
         $("#popup").dialog({ modal: true, minWidth: 750, maxWidth: 750, minHeight: 600, title: "Add New Car" });
     }
 
-    function addCallback() {
+    function addCallback(data) {
         $("#popup").dialog("close");
-        loadPagedProducts(currentPage.currentPage);
+        loadPagedProducts(currentPage.totalPage);
     }
 
     function displayProduct(products) {
@@ -124,8 +127,8 @@ $(function(){
 
     window.onload = function() {
         CarStoreCommon.resetHeaderButtons();
-        loadPagedProducts(0);
-        $("#addprod").click(function() {
+        loadPagedProducts(1);
+        $("#addprod").off('click').on('click', function() {
             showAddProductView();
         });
     }
