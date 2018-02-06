@@ -27,7 +27,6 @@
     <c:import url="header.jsp"></c:import>
 </section>
 <div id="main" class="main">
-    <div id="popup"></div>
     <div id="spinner"><img src="<c:url value='/image/spinner.gif'/>"></div>
     <div id="add-product-action"></div>
     <div id="product-container">
@@ -36,6 +35,7 @@
         <input id="back" class="paging-button" type="button" value=" < ">
         <input id="next" class="paging-button" type="button" value=" > ">
     </div>
+    <div id="popup"></div>
 </div>
 </body>
 </html>
