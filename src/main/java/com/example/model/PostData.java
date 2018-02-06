@@ -4,8 +4,10 @@ public class PostData {
     private String command;
     private Paging paging;
     private int productIdAddToCart;
+    private int productIdRemoveFromCart;
     private int productId;
     private Product updatedProduct;
+
 
     public String getCommand() {
         return command;
@@ -26,6 +28,8 @@ public class PostData {
     public int getProductIdAddToCart() {
         return productIdAddToCart;
     }
+
+    public int getProductIdRemoveFromCart() { return productIdRemoveFromCart; }
 
     public void setProductIdAddToCart(int productIdAddToCart) {
         this.productIdAddToCart = productIdAddToCart;

@@ -1,6 +1,7 @@
 package com.example.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ShoppingCart {
@@ -19,6 +20,19 @@ public class ShoppingCart {
             total += i.getTotalPrice();
         }
         totalPrice = total;
+    }
+
+    public void removeItem(Product p) {
+        Iterator itr = items.iterator();
+        totalPrice = totalPrice - p.getUnitPrice();
+
+        while (itr.hasNext())
+        {
+            CartItem cartItem = (CartItem) itr.next();
+            if(cartItem.getProductId() == p.getId()) {
+                itr.remove();
+            }
+        }
     }
 
     public List<CartItem> getItems() {
