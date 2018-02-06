@@ -45,16 +45,16 @@ var ProuctDetail = (function() {
 
         let prodElement = `  
             <div>
-                <p><img src="/carstore/image/${product.image}" alt="product image"/></p>             
-                <p><strong>Title: </strong> ${product.name}</p>
-                <p><strong>Make: </strong> ${product.make}</p>
-                <p><strong>Model: </strong> ${product.model}</p>
-                <p><strong>Year: </strong> ${product.year}</p>
-                <p><strong>Description: </strong> ${product.description}</p>
-                <p><strong>Price: </strong><span class="price">$${product.unitPrice.toLocaleString()}</span></p>
-                <p class="center-50">
+                <div><img src="/carstore/image/${product.image}" alt="product image"/></div>             
+                <div><strong>Title: </strong> ${product.name}</div>
+                <div><strong>Make: </strong> ${product.make}</div>
+                <div><strong>Model: </strong> ${product.model}</div>
+                <div><strong>Year: </strong> ${product.year}</div>
+                <div><strong>Description: </strong> ${product.description}</div>
+                <div><strong>Price: </strong><span class="price">$${product.unitPrice.toLocaleString()}</span></div>
+                <div class="center-50">
                     <input id="ok_${product.id}" class="button" type="button" value=" OK " data-productid = "${product.id}">
-                </p>
+                </div>
             </div>
         <div class="clear"></div>
         `;

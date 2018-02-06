@@ -214,6 +214,10 @@ input[type="button"]:disabled, button[disabled]{
     background-color: cornflowerblue;
 }
 
+.ui-dialog-titlebar .ui-dialog-title {
+    color: white;
+}
+
 .product textarea {
     height: 100px;
 }
