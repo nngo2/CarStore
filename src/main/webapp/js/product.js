@@ -11,11 +11,13 @@ $(function(){
         return  $.post(CarStoreCommon.targetUrl + "additem", {command: JSON.stringify(postData)});
     }
 
-    function getProducts(page) {
+    function loadPagedProducts(page) {
+        CarStoreCommon.showSpinner();
         getProductData(page).done(function(data) {
             let pagedProduct = JSON.parse(data);
             displayProduct(pagedProduct.products);
             configurePaging(pagedProduct.paging);
+            CarStoreCommon.hideSpinner();
         });
     }
 
@@ -33,7 +35,7 @@ $(function(){
                     if (currentPage.currentPage > page.totalPage) {
                         currentPage.currentPage = page.totalPage;
                     }
-                    getProducts(currentPage.currentPage);
+                    loadPagedProducts(currentPage.currentPage);
                 });
         }
         if (page.currentPage <= 0) {
@@ -45,7 +47,7 @@ $(function(){
                     if (currentPage.currentPage < 0) {
                         currentPage.currentPage = 0;
                     }
-                    getProducts(currentPage.currentPage);
+                    loadPagedProducts(currentPage.currentPage);
                 });
         }
     }
@@ -67,8 +69,13 @@ $(function(){
     }
 
     function editProduct(itemId) {
-        ProuctDetail.buildProductEdit("popup", itemId, viewDetailCallback);
+        ProuctDetail.buildProductEdit("popup", itemId, editDetailCallback);
         $("#popup").dialog({ minWidth: 750, maxWidth: 750, minHeight: 600, title: "Edit Car Details" });
+    }
+
+    function editDetailCallback() {
+        $("#popup").dialog("close");
+        loadPagedProducts(currentPage.currentPage);
     }
 
     function displayProduct(products) {
@@ -107,6 +114,6 @@ $(function(){
 
     window.onload = function() {
         CarStoreCommon.resetHeaderButtons();
-        getProducts(0);
+        loadPagedProducts(0);
     }
 });

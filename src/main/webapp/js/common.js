@@ -56,11 +56,21 @@ var CarStoreCommon = (function() {
         }
     }
 
+    function showSpinner () {
+        $("#spinner").show();
+    }
+
+    function hideSpinner () {
+        $("#spinner").hide();
+    }
+
     return {
         targetUrl: targetUrl,
         isCartEmpty: isCartEmpty,
         isLoggedin: isLoggedin,
         isAdmin: isAdmin,
+        showSpinner: showSpinner,
+        hideSpinner: hideSpinner,
         setLogoutButtonStatus: setLogoutButtonStatus,
         setCartButtonStatus: setCartButtonStatus,
         setLoginButtonStatus: setLoginButtonStatus,

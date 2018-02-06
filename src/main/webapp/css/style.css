@@ -233,3 +233,9 @@ input[type="button"]:disabled, button[disabled]{
     margin-right: auto;
     margin-left: auto;
 }
+
+#spinner img {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}

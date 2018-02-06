@@ -1,5 +1,5 @@
 var ProuctDetail = (function() {
-    var callback = null;
+    let callback = null;
 
     function getProductData (id) {
         let postData = {command: "get-product-detail",  productId: id };

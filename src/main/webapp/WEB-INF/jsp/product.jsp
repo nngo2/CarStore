@@ -28,6 +28,7 @@
 </section>
 <div id="main" class="main">
     <div id="popup"></div>
+    <div id="spinner"><img src="<c:url value='/image/spinner.gif'/>"></div>
     <div id="product-container">
     </div>
     <div>
