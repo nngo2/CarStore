@@ -40,6 +40,9 @@ public class ProductDataServlet extends HttpServlet {
         } else if (post.getCommand().equals(Constants.CMD_GET_PRODUCT_DETAIL)) {
             Product product = db.getProduct(post.getProductId());
             out.write(mapper.writeValueAsString(product));
+        } else if (post.getCommand().equals(Constants.CMD_UPDATE_PRODUCT_DETAIL)) {
+            Product product = post.getUpdatedProduct();
+            db.updateProduct(product);
         }
     }
 }

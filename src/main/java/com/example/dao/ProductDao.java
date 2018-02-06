@@ -12,4 +12,5 @@ public interface ProductDao {
     Collection<Product> getAllProducts();
     Paging getPagingInfo();
     PagedProduct getPagedProducts(Paging page);
+    void updateProduct(Product p);
 }

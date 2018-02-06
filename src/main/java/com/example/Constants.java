@@ -29,5 +29,6 @@ public class Constants {
     public static final String CMD_GET_PRODUCT = "get-product";
     public static final String CMD_ADD_PRODUCT_CART = "add-product-cart";
     public static final String CMD_GET_PRODUCT_DETAIL = "get-product-detail";
+    public static final String CMD_UPDATE_PRODUCT_DETAIL = "update-product-detail";
 
 }

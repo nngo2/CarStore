@@ -74,4 +74,16 @@ public class ProductDaoImpl implements ProductDao {
         pProduct.setProducts(products);
         return pProduct;
     }
+
+    @Override
+    public void updateProduct(Product p) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Product update = session.get(Product.class, p.getId());
+        String imageUrl = update.getImage();
+        update = (Product)session.merge(p);
+        update.setImage(imageUrl);
+        session.persist(update);
+        transaction.commit();
+    }
 }
