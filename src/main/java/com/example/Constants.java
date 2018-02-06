@@ -31,5 +31,5 @@ public class Constants {
     public static final String CMD_REMOVE_PRODUCT_CART = "remove-product-cart";
     public static final String CMD_GET_PRODUCT_DETAIL = "get-product-detail";
     public static final String CMD_UPDATE_PRODUCT_DETAIL = "update-product-detail";
-
+    public static final String CMD_DELETE_PRODUCT = "delete-product";
 }

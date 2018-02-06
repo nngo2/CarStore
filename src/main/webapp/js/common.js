@@ -6,6 +6,8 @@ var CarStoreCommon = (function() {
     var appStatus = {};
 
     function resetHeaderButtons() {
+        let d = $.Deferred();
+
         getAppStatus().done(function() {
             if (CarStoreCommon.isCartEmpty) {
                 CarStoreCommon.setCartButtonStatus(false);
@@ -20,7 +22,11 @@ var CarStoreCommon = (function() {
                 CarStoreCommon.setLogoutButtonStatus(false);
                 CarStoreCommon.setLoginButtonStatus(true);
             }
+
+            d.resolve();
         });
+
+        return d.promise();
     }
 
     function getAppStatus() {
@@ -79,5 +85,3 @@ var CarStoreCommon = (function() {
     }
 
 })();
-
-

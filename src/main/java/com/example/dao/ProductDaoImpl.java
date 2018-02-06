@@ -32,6 +32,16 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public void deleteProduct(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Product p = new Product();
+        p.setId(id);
+        session.delete(p);
+        transaction.commit();
+    }
+
+    @Override
     public Collection<Product> getAllProducts() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
@@ -62,9 +72,10 @@ public class ProductDaoImpl implements ProductDao {
         Long countResults = (Long) countQuery.uniqueResult();
         int lastPageNumber = (int) (Math.ceil(countResults / Constants.PAGE_SIZE));
         page.setTotalPage(lastPageNumber);
+        page.setTotalCount(countResults);
 
         Query selectQuery = session.createQuery("from com.example.model.Product");
-        selectQuery.setFirstResult(page.getCurrentPage() * page.getPageSize());
+        selectQuery.setFirstResult((page.getCurrentPage() - 1) * page.getPageSize());
         selectQuery.setMaxResults(page.getPageSize());
         List<Product> products = selectQuery.list();
         transaction.commit();

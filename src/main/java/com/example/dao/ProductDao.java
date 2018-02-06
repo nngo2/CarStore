@@ -9,6 +9,7 @@ import java.util.Collection;
 public interface ProductDao {
     void addProduct(Product p);
     Product getProduct(int id);
+    void deleteProduct(int id);
     Collection<Product> getAllProducts();
     Paging getPagingInfo();
     PagedProduct getPagedProducts(Paging page);

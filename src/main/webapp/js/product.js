@@ -11,6 +11,11 @@ $(function(){
         return  $.post(CarStoreCommon.targetUrl + "additem", {command: JSON.stringify(postData)});
     }
 
+    function deleteProductData(id) {
+        let postData = {command: "delete-product",  productId: id};
+        return  $.post(CarStoreCommon.targetUrl + "productdata", {command: JSON.stringify(postData)});
+    }
+
     function loadPagedProducts(page) {
         CarStoreCommon.showSpinner();
         getProductData(page).done(function(data) {
@@ -23,14 +28,19 @@ $(function(){
 
     function configurePaging(page) {
         currentPage = page;
-        if (page.currentPage >= page.totalPage) {
+
+        // recalculate total page, since Java Math.ceil does not always round up!
+        currentPage.totalPage = Math.ceil(currentPage.totalCount / currentPage.pageSize);
+
+        if (currentPage.currentPage >= currentPage.totalPage) {
             $("#next")
                 .attr('disabled',true);
 
         } else {
             $("#next")
                 .attr('disabled',false)
-                .click(function() {
+                .off('click')
+                .on('click',function() {
                     currentPage.currentPage++;
                     if (currentPage.currentPage > page.totalPage) {
                         currentPage.currentPage = page.totalPage;
@@ -38,14 +48,16 @@ $(function(){
                     loadPagedProducts(currentPage.currentPage);
                 });
         }
-        if (page.currentPage <= 0) {
+        if ((page.currentPage - 1) <= 0) {
             $("#back").attr('disabled',true);
         } else {
-            $("#back").attr('disabled',false)
-                .click(function() {
+            $("#back")
+                .attr('disabled',false)
+                .off('click')
+                .on('click', function() {
                     currentPage.currentPage--;
-                    if (currentPage.currentPage < 0) {
-                        currentPage.currentPage = 0;
+                    if (currentPage.currentPage <= 1) {
+                        currentPage.currentPage = 1;
                     }
                     loadPagedProducts(currentPage.currentPage);
                 });
@@ -83,9 +95,39 @@ $(function(){
         $("#popup").dialog({ modal: true, minWidth: 750, maxWidth: 750, minHeight: 600, title: "Add New Car" });
     }
 
-    function addCallback() {
+    function addCallback(data) {
         $("#popup").dialog("close");
-        loadPagedProducts(currentPage.currentPage);
+        loadPagedProducts(currentPage.totalPage);
+    }
+
+    function deleteProduct(id) {
+        deleteProductData(id).done(function() {
+            loadPagedProducts(currentPage.currentPage);
+        });
+    }
+
+    function constructProductDetailActions(id) {
+        if (CarStoreCommon.isAdmin) {
+            return `
+                <input id="edit_${
+                id}" class="button" type="button" value=" Edit " data-productid = "${id}">
+                <input id="delete_${id}" class="button" type="button" value=" Delete " data-productid = "${id}">
+                 `;
+        } else {
+            return `
+                <input id="add_${id}" class="button" type="button" value=" Add To Cart " data-productid = "${id}">
+                <input id="view_${id}" class="button" type="button" value=" View Details " data-productid = "${id}">   
+                `;
+        }
+    }
+
+    function constructProductActions() {
+        if (CarStoreCommon.isAdmin) {
+            $("#add-product-action").append($("<input id='addprod' class='button' type='button' value=' Add Car '/>"));
+            $("#addprod").off('click').on('click', function() {
+                showAddProductView();
+            });
+        }
     }
 
     function displayProduct(products) {
@@ -98,9 +140,7 @@ $(function(){
                     <p>${products[i].description}</p>
                     <p class="price">$${products[i].unitPrice.toLocaleString()}</p>
                     <p>
-                        <input id="add_${products[i].id}" class="button" type="button" value=" Add To Cart " data-productid = "${products[i].id}">
-                        <input id="view_${products[i].id}" class="button" type="button" value=" View Details " data-productid = "${products[i].id}">
-                        <input id="edit_${products[i].id}" class="button" type="button" value=" Edit " data-productid = "${products[i].id}">
+                        ${constructProductDetailActions(products[i].id)}
                     </p>
                 </div>
             <div class="clear"></div>
@@ -119,14 +159,17 @@ $(function(){
             $("#edit_" + products[i].id).click(function() {
                 editProduct($(this).attr("data-productid"));
             });
+
+            $("#delete_" + products[i].id).click(function() {
+                deleteProduct($(this).attr("data-productid"));
+            });
         }
     }
 
     window.onload = function() {
-        CarStoreCommon.resetHeaderButtons();
-        loadPagedProducts(0);
-        $("#addprod").click(function() {
-            showAddProductView();
+        CarStoreCommon.resetHeaderButtons().done(function () {
+            constructProductActions();
         });
+        loadPagedProducts(1);
     }
 });

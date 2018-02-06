@@ -29,9 +29,7 @@
 <div id="main" class="main">
     <div id="popup"></div>
     <div id="spinner"><img src="<c:url value='/image/spinner.gif'/>"></div>
-    <div>
-        <input id="addprod" class="button" type="button" value=" Add Car ">
-    </div>
+    <div id="add-product-action"></div>
     <div id="product-container">
     </div>
     <div>
