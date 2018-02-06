@@ -148,6 +148,12 @@ input[type="checkbox"] {
     margin: 0 auto;
 }
 
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #cart {
     padding-top: 20px;
 }
@@ -220,4 +226,10 @@ input[type="button"]:disabled, button[disabled]{
 
 .product textarea {
     height: 100px;
+}
+
+.product img {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }

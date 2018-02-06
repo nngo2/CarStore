@@ -59,7 +59,7 @@ $(function(){
 
     function viewDetail(itemId) {
         ProuctDetail.buildProductView("popup", itemId, viewDetailCallback);
-        $("#popup").dialog({ minWidth: 700, maxWidth: 700, minHeight: 600, title: "Car Details" });
+        $("#popup").dialog({ minWidth: 750, maxWidth: 750, minHeight: 600, title: "Car Details" });
     }
 
     function viewDetailCallback() {
@@ -68,7 +68,7 @@ $(function(){
 
     function editProduct(itemId) {
         ProuctDetail.buildProductEdit("popup", itemId, viewDetailCallback);
-        $("#popup").dialog({ minWidth: 700, maxWidth: 700, minHeight: 600, title: "Edit Car Details" });
+        $("#popup").dialog({ minWidth: 750, maxWidth: 750, minHeight: 600, title: "Edit Car Details" });
     }
 
     function displayProduct(products) {

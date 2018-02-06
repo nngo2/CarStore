@@ -44,7 +44,7 @@ var ProuctDetail = (function() {
         containerElement.empty();
 
         let prodElement = `  
-            <div>
+            <div class="product">
                 <div><img src="/carstore/image/${product.image}" alt="product image"/></div>             
                 <div><strong>Title: </strong> ${product.name}</div>
                 <div><strong>Make: </strong> ${product.make}</div>
@@ -52,7 +52,7 @@ var ProuctDetail = (function() {
                 <div><strong>Year: </strong> ${product.year}</div>
                 <div><strong>Description: </strong> ${product.description}</div>
                 <div><strong>Price: </strong><span class="price">$${product.unitPrice.toLocaleString()}</span></div>
-                <div class="center-50">
+                <div class="center">
                     <input id="ok_${product.id}" class="button" type="button" value=" OK " data-productid = "${product.id}">
                 </div>
             </div>
@@ -82,7 +82,7 @@ var ProuctDetail = (function() {
                 <div><label>Year: <input id="year" name="year" type="number" value="${product.year}" pattern="\d{4}"/></label></div>
                 <div><label>Description: <textarea id="description" name="description" rows="3" value="${product.description}"></textarea></label></div>
                 <div><label>Price: <input id="year" name="year" type="number" value="${product.unitPrice}" required pattern="\d{1,}\.\d{2}"/></label></div>
-                <div>
+                <div class="center">
                     <input id="save_${product.id}" class="button" type="button" value=" OK " data-productid = "${product.id}">
                     <input id="cancel_${product.id}" class="button" type="button" value=" Cancel " data-productid = "${product.id}">
                 </div>
