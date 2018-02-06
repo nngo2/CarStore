@@ -4,7 +4,7 @@ public class Paging {
     private int pageSize = 3;
     private int currentPage;
     private int totalPage;
-    private int nextPage;
+    private long totalCount;
 
     public Paging() {
         super();
@@ -41,11 +41,11 @@ public class Paging {
         this.totalPage = totalPage;
     }
 
-    public int getNextPage() {
-        return nextPage;
+    public long getTotalCount() {
+        return totalCount;
     }
 
-    public void setNextPage(int nextPage) {
-        this.nextPage = nextPage;
+    public void setTotalCount(long totalCount) {
+        this.totalCount = totalCount;
     }
 }

@@ -23,7 +23,11 @@ $(function(){
 
     function configurePaging(page) {
         currentPage = page;
-        if ((page.currentPage - 1) >= page.totalPage) {
+
+        // recalculate total page, since Java Math.ceil does not always round up!
+        currentPage.totalPage = Math.ceil(currentPage.totalCount / currentPage.pageSize);
+
+        if (currentPage.currentPage >= currentPage.totalPage) {
             $("#next")
                 .attr('disabled',true);
 
@@ -33,8 +37,8 @@ $(function(){
                 .off('click')
                 .on('click',function() {
                     currentPage.currentPage++;
-                    if (currentPage.currentPage > (page.totalPage + 1)) {
-                        currentPage.currentPage = page.totalPage + 1;
+                    if (currentPage.currentPage > page.totalPage) {
+                        currentPage.currentPage = page.totalPage;
                     }
                     loadPagedProducts(currentPage.currentPage);
                 });

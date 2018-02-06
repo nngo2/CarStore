@@ -62,6 +62,7 @@ public class ProductDaoImpl implements ProductDao {
         Long countResults = (Long) countQuery.uniqueResult();
         int lastPageNumber = (int) (Math.ceil(countResults / Constants.PAGE_SIZE));
         page.setTotalPage(lastPageNumber);
+        page.setTotalCount(countResults);
 
         Query selectQuery = session.createQuery("from com.example.model.Product");
         selectQuery.setFirstResult((page.getCurrentPage() - 1) * page.getPageSize());
