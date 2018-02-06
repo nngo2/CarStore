@@ -13,7 +13,6 @@ $(function() {
     }
 
     $(".removeButton").click(function() {
-        console.log($(this).attr("data-productid"));
         $('#item_' + $(this).attr("data-productid")).hide();
         removeProductFromCart($(this).attr("data-productid"));
 
@@ -21,6 +20,7 @@ $(function() {
 
     function removeProductFromCart(id) {
         let postData = {command: "remove-product-cart",  productIdRemoveFromCart: id};
+
         return  $.post(CarStoreCommon.targetUrl + "removeitem", {command: JSON.stringify(postData)});
     }
 });

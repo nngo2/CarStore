@@ -24,12 +24,12 @@ public class ShoppingCart {
 
     public void removeItem(Product p) {
         Iterator itr = items.iterator();
-        totalPrice = totalPrice - p.getUnitPrice();
 
         while (itr.hasNext())
         {
             CartItem cartItem = (CartItem) itr.next();
             if(cartItem.getProductId() == p.getId()) {
+                totalPrice = totalPrice - p.getUnitPrice();
                 itr.remove();
             }
         }

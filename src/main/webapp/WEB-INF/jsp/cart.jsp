@@ -26,12 +26,12 @@
 </section>
 <section class="main">
     <div id="popup"></div>
+    <div class="center-50">
+        <form method="get" action="<c:url value='/product'/>">
+            <input class="button" type="submit" value=" Continue Shopping ">
+        </form>
+    </div>
     <div id="cart">
-        <div class="center-50">
-            <form method="get" action="<c:url value='/product'/>">
-                <input class="button" type="submit" value=" Continue Shopping ">
-            </form>
-        </div>
         <table id="cart-container" class="center-50">
             <tr>
                 <th>Product</th>
@@ -43,11 +43,15 @@
                         <button id="view_${i.productId}" class="button buttonDetails" data-productid = "${i.productId}"> View Details</button>
                         <button id="view_${i.productId}" class="button removeButton" data-productid = "${i.productId}"> Delete</button>
                     </td>
-                    <td class="price"><fmt:formatNumber value="${i.price}" type="currency" currencySymbol="$"/> </td>
+                    <td class="price">
+                        <fmt:formatNumber value="${i.price}" type="currency" currencySymbol="$"/>
+                    </td>
                 </tr>
             </c:forEach>
             <tr>
-                <td colspan="2" id="price">Total price: <fmt:formatNumber value="${cart.totalPrice}" type="currency" currencySymbol="$"/></td>
+                <td colspan="2" id="price">
+                    Total price: <fmt:formatNumber value="${cart.totalPrice}" type="currency" currencySymbol="$"/>
+                </td>
             </tr>
         </table>
         <div class="center-50">
