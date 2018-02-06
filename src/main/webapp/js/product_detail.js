@@ -12,7 +12,25 @@ var ProuctDetail = (function() {
         });
     }
 
+    function buildProductEdit (containerId, prodId, func) {
+        getProductData(prodId).done(function(data) {
+            buildEditView(containerId, JSON.parse(data), func);
+        });
+    }
+
     function okHandler (id) {
+        if (typeof callback === 'function') {
+            callback();
+        }
+    }
+
+    function saveHandler (id) {
+        if (typeof callback === 'function') {
+            callback();
+        }
+    }
+
+    function cancelHandler (id) {
         if (typeof callback === 'function') {
             callback();
         }
@@ -27,7 +45,7 @@ var ProuctDetail = (function() {
 
         let prodElement = `  
             <div>
-                <img src="/carstore/image/${product.image}" alt="product image"/>
+                <p><img src="/carstore/image/${product.image}" alt="product image"/></p>             
                 <p><strong>Title: </strong> ${product.name}</p>
                 <p><strong>Make: </strong> ${product.make}</p>
                 <p><strong>Model: </strong> ${product.model}</p>
@@ -48,8 +66,44 @@ var ProuctDetail = (function() {
         });
     }
 
+    function buildEditView(containerId, product, func) {
+        callback = func;
+
+        let containerElement = $("#" + containerId);
+
+        containerElement.empty();
+
+        let prodElement = `  
+            <div class="product">
+                <div><img src="/carstore/image/${product.image}" alt="product image"/></div>
+                <div><label>Title: <input id="name" name="name" type="text" value="${product.name}" required/></label></div>
+                <div><label>Make: <input id="make" name="make" type="text" value="${product.make}" required/></label></div>
+                <div><label>Model: <input id="model" name="model" type="text" value="${product.model}" required/></label></div>
+                <div><label>Year: <input id="year" name="year" type="number" value="${product.year}" pattern="\d{4}"/></label></div>
+                <div><label>Description: <textarea id="description" name="description" rows="3" value="${product.description}"></textarea></label></div>
+                <div><label>Price: <input id="year" name="year" type="number" value="${product.unitPrice}" required pattern="\d{1,}\.\d{2}"/></label></div>
+                <div>
+                    <input id="save_${product.id}" class="button" type="button" value=" OK " data-productid = "${product.id}">
+                    <input id="cancel_${product.id}" class="button" type="button" value=" Cancel " data-productid = "${product.id}">
+                </div>
+            </div>
+        <div class="clear"></div>
+        `;
+
+        containerElement.append(prodElement);
+
+        $("#save_" + product.id).click(function() {
+            saveHandler($(this).attr("data-productid"));
+        });
+
+        $("#cancel_" + product.id).click(function() {
+            cancelHandler($(this).attr("data-productid"));
+        });
+    }
+
     return {
-        buildProductView: buildProductView
+        buildProductView: buildProductView,
+        buildProductEdit: buildProductEdit
     };
 
 })();

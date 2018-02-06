@@ -66,6 +66,11 @@ $(function(){
         $("#popup").dialog("close");
     }
 
+    function editProduct(itemId) {
+        ProuctDetail.buildProductEdit("popup", itemId, viewDetailCallback);
+        $("#popup").dialog({ minWidth: 800, minHeight: 600 });
+    }
+
     function displayProduct(products) {
         $("#product-container").empty();
         for (let i = 0; i < products.length; i++) {
@@ -78,6 +83,7 @@ $(function(){
                     <p>
                         <input id="add_${products[i].id}" class="button" type="button" value=" Add To Cart " data-productid = "${products[i].id}">
                         <input id="view_${products[i].id}" class="button" type="button" value=" View Details " data-productid = "${products[i].id}">
+                        <input id="edit_${products[i].id}" class="button" type="button" value=" Edit " data-productid = "${products[i].id}">
                     </p>
                 </div>
             <div class="clear"></div>
@@ -91,6 +97,10 @@ $(function(){
 
             $("#view_" + products[i].id).click(function() {
                 viewDetail($(this).attr("data-productid"));
+            });
+
+            $("#edit_" + products[i].id).click(function() {
+                editProduct($(this).attr("data-productid"));
             });
         }
     }

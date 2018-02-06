@@ -60,12 +60,12 @@ var CarStoreCommon = (function() {
         targetUrl: targetUrl,
         isCartEmpty: isCartEmpty,
         isLoggedin: isLoggedin,
+        isAdmin: isAdmin,
         setLogoutButtonStatus: setLogoutButtonStatus,
         setCartButtonStatus: setCartButtonStatus,
         setLoginButtonStatus: setLoginButtonStatus,
         getAppStatus: getAppStatus,
         resetHeaderButtons: resetHeaderButtons
-
     }
 
 })();
