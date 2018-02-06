@@ -106,6 +106,30 @@ $(function(){
         });
     }
 
+    function constructProductDetailActions(id) {
+        if (CarStoreCommon.isAdmin) {
+            return `
+                <input id="edit_${
+                id}" class="button" type="button" value=" Edit " data-productid = "${id}">
+                <input id="delete_${id}" class="button" type="button" value=" Delete " data-productid = "${id}">
+                 `;
+        } else {
+            return `
+                <input id="add_${id}" class="button" type="button" value=" Add To Cart " data-productid = "${id}">
+                <input id="view_${id}" class="button" type="button" value=" View Details " data-productid = "${id}">   
+                `;
+        }
+    }
+
+    function constructProductActions() {
+        if (CarStoreCommon.isAdmin) {
+            $("#add-product-action").append($("<input id='addprod' class='button' type='button' value=' Add Car '/>"));
+            $("#addprod").off('click').on('click', function() {
+                showAddProductView();
+            });
+        }
+    }
+
     function displayProduct(products) {
         $("#product-container").empty();
         for (let i = 0; i < products.length; i++) {
@@ -116,10 +140,7 @@ $(function(){
                     <p>${products[i].description}</p>
                     <p class="price">$${products[i].unitPrice.toLocaleString()}</p>
                     <p>
-                        <input id="add_${products[i].id}" class="button" type="button" value=" Add To Cart " data-productid = "${products[i].id}">
-                        <input id="view_${products[i].id}" class="button" type="button" value=" View Details " data-productid = "${products[i].id}">
-                        <input id="edit_${products[i].id}" class="button" type="button" value=" Edit " data-productid = "${products[i].id}">
-                        <input id="delete_${products[i].id}" class="button" type="button" value=" Delete " data-productid = "${products[i].id}">
+                        ${constructProductDetailActions(products[i].id)}
                     </p>
                 </div>
             <div class="clear"></div>
@@ -146,10 +167,9 @@ $(function(){
     }
 
     window.onload = function() {
-        CarStoreCommon.resetHeaderButtons();
-        loadPagedProducts(1);
-        $("#addprod").off('click').on('click', function() {
-            showAddProductView();
+        CarStoreCommon.resetHeaderButtons().done(function () {
+            constructProductActions();
         });
+        loadPagedProducts(1);
     }
 });
