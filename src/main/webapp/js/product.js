@@ -61,7 +61,7 @@ $(function(){
 
     function viewDetail(itemId) {
         ProuctDetail.buildProductView("popup", itemId, viewDetailCallback);
-        $("#popup").dialog({ minWidth: 750, maxWidth: 750, minHeight: 600, title: "Car Details" });
+        $("#popup").dialog({ modal: true, minWidth: 750, maxWidth: 750, minHeight: 600, title: "Car Details" });
     }
 
     function viewDetailCallback() {
@@ -70,10 +70,20 @@ $(function(){
 
     function editProduct(itemId) {
         ProuctDetail.buildProductEdit("popup", itemId, editDetailCallback);
-        $("#popup").dialog({ minWidth: 750, maxWidth: 750, minHeight: 600, title: "Edit Car Details" });
+        $("#popup").dialog({ modal: true, minWidth: 750, maxWidth: 750, minHeight: 600, title: "Edit Car Details" });
     }
 
     function editDetailCallback() {
+        $("#popup").dialog("close");
+        loadPagedProducts(currentPage.currentPage);
+    }
+
+    function showAddProductView () {
+        ProuctDetail.buildAddView("popup", addCallback);
+        $("#popup").dialog({ modal: true, minWidth: 750, maxWidth: 750, minHeight: 600, title: "Add New Car" });
+    }
+
+    function addCallback() {
         $("#popup").dialog("close");
         loadPagedProducts(currentPage.currentPage);
     }
@@ -115,5 +125,8 @@ $(function(){
     window.onload = function() {
         CarStoreCommon.resetHeaderButtons();
         loadPagedProducts(0);
+        $("#addprod").click(function() {
+            showAddProductView();
+        });
     }
 });

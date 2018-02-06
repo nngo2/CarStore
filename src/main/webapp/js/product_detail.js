@@ -52,6 +52,18 @@ var ProuctDetail = (function() {
         }
     }
 
+    function addHandler () {
+        if (typeof callback === 'function') {
+            callback();
+        }
+    }
+
+    function cancelAddHandler () {
+        if (typeof callback === 'function') {
+            callback();
+        }
+    }
+
     function buildDisplayView(containerId, product, func) {
         callback = func;
 
@@ -69,7 +81,7 @@ var ProuctDetail = (function() {
                 <div><strong>Description: </strong> ${product.description}</div>
                 <div><strong>Price: </strong><span class="price">$${product.unitPrice.toLocaleString()}</span></div>
                 <div class="center">
-                    <input id="ok_${product.id}" class="button" type="button" value=" OK " data-productid = "${product.id}">
+                    <input id="ok_${product.id}" class="button" type="button" value=" OK " data-productid = "${product.id}"/>
                 </div>
             </div>
         <div class="clear"></div>
@@ -99,8 +111,8 @@ var ProuctDetail = (function() {
                 <div><label>Description: <textarea id="description" name="description" rows="3">${product.description}</textarea></label></div>
                 <div><label>Price: <input id="unitPrice" name="unitPrice" type="number" value="${product.unitPrice}" required pattern="\d{1,}\.\d{2}"/></label></div>
                 <div class="center">
-                    <input id="save_${product.id}" class="button" type="button" value=" OK " data-productid = "${product.id}">
-                    <input id="cancel_${product.id}" class="button" type="button" value=" Cancel " data-productid = "${product.id}">
+                    <input id="save_${product.id}" class="button" type="button" value=" OK " data-productid = "${product.id}"/>
+                    <input id="cancel_${product.id}" class="button" type="button" value=" Cancel " data-productid = "${product.id}"/>
                 </div>
             </div>
         <div class="clear"></div>
@@ -117,9 +129,45 @@ var ProuctDetail = (function() {
         });
     }
 
+    function buildAddView(containerId, func) {
+        callback = func;
+
+        let containerElement = $("#" + containerId);
+
+        containerElement.empty();
+
+        let prodElement = `  
+            <div class="product">
+                <div><label>Image: <input id="image" name="image" type="file"/></label></div>
+                <div><label>Title: <input id="name" name="name" type="text" required/></label></div>
+                <div><label>Make: <input id="make" name="make" type="text" required/></label></div>
+                <div><label>Model: <input id="model" name="model" type="text" required/></label></div>
+                <div><label>Year: <input id="year" name="year" type="number" pattern="\d{4}"/></label></div>
+                <div><label>Description: <textarea id="description" name="description" rows="3"></textarea></label></div>
+                <div><label>Price: <input id="unitPrice" name="unitPrice" type="number" required pattern="\d{1,}\.\d{2}"/></label></div>
+                <div class="center">
+                    <input id="add_product" class="button" type="button" value=" OK " />
+                    <input id="cancel_add" class="button" type="button" value=" Cancel " />
+                </div>
+            </div>
+        <div class="clear"></div>
+        `;
+
+        containerElement.append(prodElement);
+
+        $("#add_product").click(function() {
+            addHandler();
+        });
+
+        $("#cancel_add").click(function() {
+            cancelAddHandler();
+        });
+    }
+
     return {
         buildProductView: buildProductView,
-        buildProductEdit: buildProductEdit
+        buildProductEdit: buildProductEdit,
+        buildAddView: buildAddView
     };
 
 })();
