@@ -67,9 +67,13 @@ var ProuctDetail = (function() {
                 processData : false,
                 type        : 'POST',
             }).done(function (data) {
-                callback(JSON.parse(data));
+                let result = JSON.parse(data);
+                if (result.error) {
+                    CarStoreCommon.toasterError(result.error);
+                } else {
+                    callback(result);
+                }
             });
-
         }
     }
 

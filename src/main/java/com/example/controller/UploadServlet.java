@@ -40,6 +40,7 @@ public class UploadServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+
         // gets absolute path of the web application
         String appPath = request.getServletContext().getRealPath("");
 
@@ -52,26 +53,31 @@ public class UploadServlet extends HttpServlet {
             fileSaveDir.mkdir();
         }
 
-        // refines the fileName in case it is an absolute path
-        Part part = request.getPart("image");
+        try {
+            // refines the fileName in case it is an absolute path
+            Part part = request.getPart("image");
 
-        if (part != null) {
-            String fileName = extractFileName(part);
-            String image = getUniqueFileName(fileName);
-            fileName = new File(image).getName();
+            if (part != null) {
+                String fileName = extractFileName(part);
+                String image = getUniqueFileName(fileName);
+                fileName = new File(image).getName();
 
-            part.write(savePath + File.separator + fileName);
+                part.write(savePath + File.separator + fileName);
 
-            String name = request.getParameter("name");
-            String make = request.getParameter("make");
-            String model = request.getParameter("model");
-            String year = request.getParameter("year");
-            String description = request.getParameter("description");
-            String unitPrice = request.getParameter("unitPrice");
+                String name = request.getParameter("name");
+                String make = request.getParameter("make");
+                String model = request.getParameter("model");
+                String year = request.getParameter("year");
+                String description = request.getParameter("description");
+                String unitPrice = request.getParameter("unitPrice");
 
-            Product p = new Product(0, name, description, image, Double.parseDouble(unitPrice), model, make, Integer.parseInt(year));
-            db.addProduct(p);
-            response.getWriter().write(mapper.writeValueAsString(p));
+                Product p = new Product(0, name, description, image, Double.parseDouble(unitPrice), model, make, Integer.parseInt(year));
+                db.addProduct(p);
+                response.getWriter().write(mapper.writeValueAsString(p));
+            }
+
+        } catch (Exception ex) {
+            response.getWriter().write(mapper.writeValueAsString(mapper.createObjectNode().put("error", ex.getMessage())));
         }
     }
 

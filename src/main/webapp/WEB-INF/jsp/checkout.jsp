@@ -22,7 +22,7 @@
     <c:import url="header.jsp"></c:import>
 </section>
 <section class="main">
-    <section id="billing">
+    <section id="billing" class="billing">
         <form class="center-50" method="post" action="<c:url value='/checkout'/>">
             <fieldset>
                 <legend>Billing Address</legend>

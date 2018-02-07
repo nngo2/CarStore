@@ -70,7 +70,7 @@ input[type="checkbox"] {
 }
 
 .main {
-    margin-top: 60px; /* Add a top margin to avoid content overlay */
+    margin-top: 70px; /* Add a top margin to avoid content overlay */
 }
 
 #login {
@@ -263,4 +263,8 @@ input[type="button"]:disabled, button[disabled]{
 #product-paging {
     width: 100%;
     text-align: center;
+}
+
+.billing {
+    padding-top: 20px;
 }
