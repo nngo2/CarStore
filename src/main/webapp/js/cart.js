@@ -18,15 +18,15 @@ $(function() {
             $('#item_' + $(this).attr("data-productid")).hide();
             removeProductFromCart($(this).attr("data-productid"));
 
-            let currentTotalPrice = parseFloat($('#price').text());
+            let currentTotalPrice = parseFloat($('#cartPrice').text());
             let priceOfRemovedItem = parseFloat($(this).attr("data-price"));
             currentTotalPrice = currentTotalPrice - priceOfRemovedItem;
-            if(currentTotalPrice) {
-                $('#price').text('$' + currentTotalPrice.toLocaleString());
+            $('#cartPrice').text(currentTotalPrice.toLocaleString());
+            if(currentTotalPrice > 0) {
+                $('#cartPrice').text(currentTotalPrice.toLocaleString());
             } else{
-                $('#price').text('Cart is empty!');
+                $('#cartPrice').text('Cart is empty!');
             }
-            console.log($(this).attr("data-price"))
         }
     });
 
