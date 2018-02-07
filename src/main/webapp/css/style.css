@@ -245,3 +245,9 @@ input[type="button"]:disabled, button[disabled]{
     margin-right: auto;
     margin-left: auto;
 }
+
+.buttonDetails, .removeButton {
+    border: 0px;
+    background-color: #f2f2f2;
+    text-decoration: underline;
+}
