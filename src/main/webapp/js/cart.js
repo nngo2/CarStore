@@ -13,18 +13,26 @@ $(function() {
     }
 
     $(".removeButton").click(function() {
-        $('#item_' + $(this).attr("data-productid")).hide();
-        removeProductFromCart($(this).attr("data-productid"));
+        var confirmRemove = confirm("Are you sure you want to remove this item?");
+        if(confirmRemove) {
+            $('#item_' + $(this).attr("data-productid")).hide();
+            removeProductFromCart($(this).attr("data-productid"));
 
+            let currentTotalPrice = parseFloat($('#price').text());
+            let priceOfRemovedItem = parseFloat($(this).attr("data-price"));
+            currentTotalPrice = currentTotalPrice - priceOfRemovedItem;
+            if(currentTotalPrice) {
+                $('#price').text('$' + currentTotalPrice.toLocaleString());
+            } else{
+                $('#price').text('Cart is empty!');
+            }
+            console.log($(this).attr("data-price"))
+        }
     });
 
     function removeProductFromCart(id) {
         let postData = {command: "remove-product-cart",  productIdRemoveFromCart: id};
 
         return  $.post(CarStoreCommon.targetUrl + "removeitem", {command: JSON.stringify(postData)});
-    }
-
-    window.onload = function() {
-        CarStoreCommon.resetHeaderButtons();
     }
 });

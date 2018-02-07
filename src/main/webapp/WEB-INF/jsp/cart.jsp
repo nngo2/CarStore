@@ -41,7 +41,7 @@
                 <tr class="item" id="item_${i.productId}">
                     <td>${i.productName} <br>
                         <button id="view_${i.productId}" class="button buttonDetails" data-productid = "${i.productId}"> View Details</button>
-                        <button id="view_${i.productId}" class="button removeButton" data-productid = "${i.productId}"> Delete</button>
+                        <button id="view_${i.productId}" class="button removeButton" data-productid = "${i.productId}" data-price = "${i.price}"> Delete</button>
                     </td>
                     <td class="price">
                         <fmt:formatNumber value="${i.price}" type="currency" currencySymbol="$"/>
@@ -49,8 +49,8 @@
                 </tr>
             </c:forEach>
             <tr>
-                <td colspan="2" id="price">
-                    Total price: <fmt:formatNumber value="${cart.totalPrice}" type="currency" currencySymbol="$"/>
+                <td colspan="2">
+                    Total Price: <span id="price">${cart.totalPrice}</span>
                 </td>
             </tr>
         </table>
