@@ -1,6 +1,6 @@
 $(function() {
-
     window.onload = function() {
-        CarStoreCommon.resetHeaderButtons();
+        CarStoreCommon.resetHeaderButtons().done(function() {
+        });
     }
 });

@@ -23,4 +23,8 @@ $(function() {
 
         return  $.post(CarStoreCommon.targetUrl + "removeitem", {command: JSON.stringify(postData)});
     }
+
+    window.onload = function() {
+        CarStoreCommon.resetHeaderButtons();
+    }
 });

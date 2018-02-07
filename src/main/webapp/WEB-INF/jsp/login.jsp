@@ -20,7 +20,7 @@
         <c:import url="header.jsp"></c:import>
     </section>
     <section id="login" class="main">
-        <form method="post" action="<c:url value='/login'/>">
+        <form id="loginForm" method="post" action="<c:url value='/login'/>">
             <p class="${css.loginErrorMessageClass}">${css.loginErrorMessage}</p>
             <fieldset>
                 <div>

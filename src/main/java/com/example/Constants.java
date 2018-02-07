@@ -8,7 +8,8 @@ public class Constants {
     public static final String USER_SESSION = "user";
     public static final String REMEMBER_ME = "rememberme";
 
-    public static final String PRODUCT_DB = "productdb";
+    public static final String LOGIN_REDIRECT_SESSION = "redirecturl";
+
     public static final String STATE_DB = "statedb";
 
     public static final String CARD_SESSION = "cart";

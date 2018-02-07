@@ -37,9 +37,12 @@ public class LoginServlet extends HttpServlet {
         LoginView vm = RequestHelper.getLoginView(req);
         req.setAttribute(Constants.USER_MODEL, vm);
 
+        String lastUrl = req.getHeader("referer");
+        HttpSession session = req.getSession();
+        session.setAttribute(Constants.LOGIN_REDIRECT_SESSION, lastUrl);
+
         req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req,resp);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -65,8 +68,12 @@ public class LoginServlet extends HttpServlet {
                 }
             }
 
-            resp.sendRedirect(req.getContextPath() + "/checkout");
-
+            String redirectUrl = (String)session.getAttribute(Constants.LOGIN_REDIRECT_SESSION);
+            if (redirectUrl != null)  {
+                resp.sendRedirect(redirectUrl);
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/checkout");
+            }
         } else {
             CssSettings css = RequestHelper.setLoginError();
             req.setAttribute(Constants.CSS_SETTINGS, css);
