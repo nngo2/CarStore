@@ -31,7 +31,7 @@
     <div id="add-product-action"></div>
     <div id="product-container">
     </div>
-    <div>
+    <div id="product-paging">
         <input id="back" class="paging-button" type="button" value=" < ">
         <input id="next" class="paging-button" type="button" value=" > ">
     </div>
