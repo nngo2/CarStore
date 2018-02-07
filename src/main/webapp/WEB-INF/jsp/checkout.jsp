@@ -13,6 +13,7 @@
     <title>Billing</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>"/>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript" src="<c:url value='/js/common.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/checkout.js'/>"></script>
 </head>
@@ -26,43 +27,46 @@
             <fieldset>
                 <legend>Billing Address</legend>
                 <div>
-                    <label>Name: <input name="billName" type="text" required/></label>
+                    <label>Name: <input name="billName" type="text" required id="billName"/></label>
                 </div>
                 <div>
-                    <label>Address Line1: <input name="billAddress1" type="text" required/></label>
+                    <label>Address Line1: <input name="billAddress1" type="text" required id="billAddress1"/></label>
                 </div>
                 <div>
-                    <label>Address Line2: <input name="billAddress2" type="text"></label>
+                    <label>Address Line2: <input name="billAddress2" type="text" id="billAddress2"></label>
                 </div>
                 <div>
-                    <label class="column-33">City: <input name="billCity" type="text" required></label>
-                    <label class="column-33">State: <select name="billState" required>
+                    <label class="column-33">City: <input name="billCity" id="billCity" type="text" required></label>
+                    <label class="column-33">State: <select name="billState" id="billState" required>
                         <c:forEach var="s" items="${states}">
-                            <option value="${s.value}" selected>${s.name}</option>
+                            <option value="${s.value}">${s.name}</option>
                         </c:forEach>
                     </select></label>
-                    <label class="column-33">Zip: <input name="billZip" type="text" required pattern="\d{5}" placeholder="12345"></label>
+                    <label class="column-33">Zip: <input name="billZip" id="billZip" type="text" required pattern="\d{5}" placeholder="12345"></label>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Shipping Address</legend>
                 <div>
-                    <label>Name: <input name="shipName" type="text" required/></label>
+                    <label>Same as Billing Address <input name="sameAddress" type="checkbox" id="sameAddress"/></label>
                 </div>
                 <div>
-                    <label>Address Line1: <input name="shipAddress1" type="text" required/></label>
+                    <label>Name: <input name="shipName" type="text" required id="shipName"/></label>
                 </div>
                 <div>
-                    <label>Address Line2: <input name="shipAddress2" type="text"></label>
+                    <label>Address Line1: <input name="shipAddress1" id="shipAddress1" type="text" required/></label>
                 </div>
                 <div>
-                    <label class="column-33">City: <input name="shipCity" type="text" required></label>
-                    <label class="column-33">State: <select name="shipState" required>
+                    <label>Address Line2: <input name="shipAddress2" id="shipAddress2" type="text"></label>
+                </div>
+                <div>
+                    <label class="column-33">City: <input name="shipCity" id="shipCity" type="text" required></label>
+                    <label class="column-33">State: <select name="shipState" id="shipState" required>
                         <c:forEach var="s" items="${states}">
-                            <option value="${s.value}" selected>${s.name}</option>
+                            <option value="${s.value}">${s.name}</option>
                         </c:forEach>
                     </select></label>
-                    <label class="column-33">Zip: <input name="shipZip" type="text" required pattern="\d{5}" placeholder="12345"></label>
+                    <label class="column-33">Zip: <input name="shipZip" id="shipZip" type="text" required pattern="\d{5}" placeholder="12345"></label>
                 </div>
             </fieldset>
             <fieldset>
