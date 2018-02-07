@@ -50,7 +50,7 @@
             </c:forEach>
             <tr>
                 <td colspan="2">
-                    Total Price: <span class="price">$${cart.totalPrice}</span>
+                    Total Price: $ <span class="price" id="cartPrice">${cart.totalPrice}</span>
                 </td>
             </tr>
         </table>
