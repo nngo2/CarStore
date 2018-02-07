@@ -57,8 +57,8 @@ input[type="checkbox"] {
 
 /* Change background on mouse-over */
 .navbar a:hover {
-    background: #f2f2f2;
-    color: black;
+    background: #4377D1;
+    border-radius: 4px;
 }
 
 .navbar span {
@@ -128,7 +128,7 @@ input[type="checkbox"] {
 }
 
 .price {
-    color: darkcyan;
+    font-style: italic;
 }
 
 .button {
@@ -136,7 +136,7 @@ input[type="checkbox"] {
     width: 200px;
     height: 40px;
     padding: 10px;
-    background-color: darkcyan;
+    background-color: #6697ea;
     color: white;
     font-weight: bold;
     text-align: center;
@@ -201,7 +201,7 @@ th {
     width: 70px;
     height: 40px;
     padding: 10px;
-    background-color: darkcyan;
+    background-color: #6697ea;
     color: white;
     font-weight: bold;
     font-size: 1em;
@@ -244,4 +244,9 @@ input[type="button"]:disabled, button[disabled]{
     border: 0px;
     background-color: #f2f2f2;
     text-decoration: underline;
+}
+
+#product-paging {
+    width: 100%;
+    text-align: center;
 }
