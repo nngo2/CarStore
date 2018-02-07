@@ -105,9 +105,9 @@ input[type="checkbox"] {
 }
 
 .visible {
-    display: block;
     color: red;
     font-weight: bold;
+    text-align: center;
 }
 
 .invisible {

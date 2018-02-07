@@ -21,7 +21,7 @@ public class Constants {
     public static final String CSS_SETTINGS = "css";
     public static final String CSS_VISIBLE = "visible";
     public static final String CSS_INVISIBLE = "invisible";
-    public static final String LOGIN_ERROR_MSG = "Invalid login! Use test1/test1 to test";
+    public static final String LOGIN_ERROR_MSG = "Invalid login!";
 
     public static final int PAGE_SIZE = 3;
 

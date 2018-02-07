@@ -18,7 +18,7 @@ $(function() {
             $('#shipZip').val('');
         }
     });
-    
+
     // this is to set up header buttons based on app states
     window.onload = function() {
         CarStoreCommon.resetHeaderButtons().done(function() {
