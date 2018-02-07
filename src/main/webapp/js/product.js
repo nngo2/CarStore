@@ -136,7 +136,7 @@ $(function(){
         for (let i = 0; i < products.length; i++) {
             var prodElement = `  
                 <div class="product">
-                    <img src="/carstore/image/${products[i].image}" alt="product image"/>
+                    <img class="mid-image" src="/carstore/image/${products[i].image}" alt="product image"/>
                     <p class="title">${products[i].name}</p>
                     <p>${products[i].description}</p>
                     <p class="price">$${products[i].unitPrice.toLocaleString()}</p>

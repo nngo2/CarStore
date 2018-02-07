@@ -88,7 +88,7 @@ var ProuctDetail = (function() {
 
         let prodElement = `  
         <div class="product">
-            <div><img src="/carstore/image/${product.image}" alt="product image"/></div>             
+            <div><img class="mid-image" src="/carstore/image/${product.image}" alt="product image"/></div>             
             <div><strong>Title: </strong> ${product.name}</div>
             <div><strong>Make: </strong> ${product.make}</div>
             <div><strong>Model: </strong> ${product.model}</div>
@@ -118,7 +118,7 @@ var ProuctDetail = (function() {
 
         let prodElement = `  
         <div class="product">
-            <div><img src="/carstore/image/${product.image}" alt="product image"/></div>
+            <div><img class="mid-image" src="/carstore/image/${product.image}" alt="product image"/></div>
             <div><label>Title: <input id="name" name="name" type="text" value="${product.name}" required/></label></div>
             <div><label>Make: <input id="make" name="make" type="text" value="${product.make}" required/></label></div>
             <div><label>Model: <input id="model" name="model" type="text" value="${product.model}" required/></label></div>
