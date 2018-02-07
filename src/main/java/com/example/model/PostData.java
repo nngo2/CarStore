@@ -7,7 +7,7 @@ public class PostData {
     private int productIdRemoveFromCart;
     private int productId;
     private Product updatedProduct;
-
+    private User user;
 
     public String getCommand() {
         return command;
@@ -49,5 +49,13 @@ public class PostData {
 
     public void setUpdatedProduct(Product updatedProduct) {
         this.updatedProduct = updatedProduct;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

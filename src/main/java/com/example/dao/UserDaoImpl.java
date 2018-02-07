@@ -33,4 +33,15 @@ public class UserDaoImpl implements UserDao {
         }
         return userList.size() > 0;
     }
+
+    @Override
+    public boolean isUserNameExisted(String name) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("from com.example.model.User u where u.username = :username");
+        query.setParameter("username", name);
+        List<User> userList = query.list();
+        transaction.commit();
+        return userList.size() > 0;
+    }
 }

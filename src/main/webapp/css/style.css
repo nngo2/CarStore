@@ -83,7 +83,7 @@ input[type="checkbox"] {
 #login form {
     margin: 20px;
     padding: 20px;
-    width: 300px;
+    min-width: 350px;
 }
 
 #login fieldset {
@@ -92,9 +92,15 @@ input[type="checkbox"] {
     background-color: cornflowerblue;
 }
 
-#login input[type="submit"] {
+#login a {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+#login input[type="submit"], #login input[type="text"], #login input[type="password"]  {
     width: 100%;
-    height: 2em;
+    height: 2.5em;
     flex: 0 0 100%;
 }
 

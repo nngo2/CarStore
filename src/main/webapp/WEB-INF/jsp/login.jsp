@@ -12,8 +12,10 @@
     <title>Login</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>" type="text/css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script type="text/javascript" src="<c:url value='/js/common.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/login.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/user.js'/>"></script>
@@ -40,7 +42,7 @@
                 </div>
             </fieldset>
             <fieldset>
-                New user: <a id="create-user-action">Click here to register an account</a>
+                <a id="create-user-action">Click here to register an account</a>
             </fieldset>
         </form>
     </section>
