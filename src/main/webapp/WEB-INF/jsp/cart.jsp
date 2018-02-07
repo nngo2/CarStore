@@ -40,8 +40,8 @@
             <c:forEach var="i" items="${cart.items}">
                 <tr class="item" id="item_${i.productId}">
                     <td>${i.productName} <br>
-                        <button id="view_${i.productId}" class="button buttonDetails" data-productid = "${i.productId}"> View Details</button>
-                        <button id="view_${i.productId}" class="button removeButton" data-productid = "${i.productId}" data-price = "${i.price}"> Delete</button>
+                        <button id="view_${i.productId}" class="buttonDetails" data-productid = "${i.productId}"> View Item Details</button>
+                        <button id="view_${i.productId}" class="removeButton" data-productid = "${i.productId}" data-price = "${i.price}"> Remove Item</button>
                     </td>
                     <td class="price">
                         <fmt:formatNumber value="${i.price}" type="currency" currencySymbol="$"/>
