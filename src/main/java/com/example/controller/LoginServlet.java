@@ -70,6 +70,7 @@ public class LoginServlet extends HttpServlet {
 
             String redirectUrl = (String)session.getAttribute(Constants.LOGIN_REDIRECT_SESSION);
             if (redirectUrl != null)  {
+                session.removeAttribute(Constants.LOGIN_REDIRECT_SESSION);
                 resp.sendRedirect(redirectUrl);
             } else {
                 resp.sendRedirect(req.getContextPath() + "/checkout");

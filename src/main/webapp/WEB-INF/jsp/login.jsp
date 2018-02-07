@@ -11,9 +11,12 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>" type="text/css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="<c:url value='/js/common.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/login.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/js/user.js'/>"></script>
 </head>
 <body>
     <section>
@@ -36,7 +39,11 @@
                     <span>Remember me  <input type="checkbox" name="rememberme" ${usermodel.rememberme}></span>
                 </div>
             </fieldset>
+            <fieldset>
+                New user: <a id="create-user-action">Click here to register an account</a>
+            </fieldset>
         </form>
     </section>
+    <div id="popup"></div>
 </body>
 </html>
